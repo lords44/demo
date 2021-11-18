@@ -4,7 +4,6 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = 
 LINKOBJ  = 
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
@@ -20,6 +19,8 @@ all: all-before $(BIN) all-after
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
-
+SRC = $(wildcard *.c)
+OBJ = $(patsubst %.c, %.o, $(SRC))
 $(BIN): $(OBJ)
-	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+	$(CC) $(LINKOBJ) -o $(BIN) $(OBJ) $(LIBS)
+
