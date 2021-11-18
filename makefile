@@ -23,4 +23,6 @@ SRC = $(wildcard *.c)
 OBJ = $(patsubst %.c, %.o, $(SRC))
 $(BIN): $(OBJ)
 	$(CC) $(LINKOBJ) -o $(BIN) $(OBJ) $(LIBS)
+$(OBJ): $(SRC)
+	$(CC) -c $(SRC)
 
